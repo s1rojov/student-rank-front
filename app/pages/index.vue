@@ -271,7 +271,7 @@
           <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
             Hoziroq ro'yxatdan o'ting va birinchi turniringizda qatnashing!
           </p>
-          <UButton size="xl" color="white" to="/register">
+          <UButton size="xl" color="secondary" to="/register">
             Hoziroq boshlash
             <UIcon name="i-heroicons-arrow-right" class="w-5 h-5 ml-2" />
           </UButton>
