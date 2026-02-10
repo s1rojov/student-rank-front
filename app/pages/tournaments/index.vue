@@ -16,7 +16,7 @@
         </div>
 
         <!-- Filters -->
-        <div class="flex flex-wrap gap-4 mb-8">
+        <!-- <div class="flex flex-wrap gap-4 mb-8">
           <USelect
             v-model="selectedCategory"
             :options="categories"
@@ -31,7 +31,7 @@
             size="xl"
             class="w-56"
           />
-        </div>
+        </div> -->
 
         <!-- Tournaments Grid -->
         <div
