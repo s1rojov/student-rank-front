@@ -2,9 +2,30 @@
 @import '@nuxt/ui';
 
 :root {
-  --ui-primary: var(--color-neutral-500);
+  --ui-primary: var(--color-blue-600);
 }
 
 .dark {
-  --ui-primary: var(--color-neutral-400);
+  --ui-primary: var(--color-blue-500);
+}
+
+/* Form elements sizing */
+.form-label-lg label {
+  @apply text-base font-medium;
+}
+
+/* Accordion larger text */
+[data-headlessui-state] button span {
+  @apply text-base;
+}
+
+/* Input placeholder */
+input::placeholder,
+textarea::placeholder {
+  @apply text-gray-400;
+}
+
+/* Checkbox label */
+.checkbox-lg label {
+  @apply text-base;
 }
