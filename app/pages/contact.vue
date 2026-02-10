@@ -44,13 +44,13 @@
                   <UInput
                     v-model="form.email"
                     type="email"
-                    placeholder="sizning@email.uz"
+                    placeholder="namuna@email.uz"
                     size="xl"
                     class="text-base w-full"
                   />
                 </div>
 
-                <div>
+                <!-- <div>
                   <label class="block text-base font-medium text-gray-900 mb-2"
                     >Mavzu</label
                   >
@@ -61,7 +61,7 @@
                     size="xl"
                     class="text-base w-full"
                   />
-                </div>
+                </div> -->
 
                 <div>
                   <label class="block text-base font-medium text-gray-900 mb-2"

@@ -21,11 +21,12 @@
           <UAccordion
             :items="faqItems"
             :ui="{
-              item: {
-                label: 'text-lg font-medium text-gray-900',
-                content: 'text-base text-gray-600',
+              wrapper: 'space-y-3',
+              default: {
+                class: 'text-lg font-medium',
               },
             }"
+            class="[&_button]:text-base [&_button]:cursor-pointer [&_button]:font-medium [&_div[role=region]]:text-base"
           />
         </div>
 

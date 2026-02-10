@@ -4,10 +4,14 @@
   >
     <div class="w-full max-w-md">
       <!-- Logo -->
-      <div class="text-center">
-        <a href="/" class="inline-flex items-center gap-2">
-          <img src="~/assets/images/logo.png" alt="StudentRank" class="w-48" />
-          <!-- <span class="text-2xl font-bold text-gray-900">StudentRank</span> -->
+      <div class="text-center mb-8">
+        <a href="/" class="inline-flex items-center gap-2 justify-center">
+          <div
+            class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center"
+          >
+            <UIcon name="i-heroicons-academic-cap" class="w-7 h-7 text-white" />
+          </div>
+          <span class="text-3xl font-bold text-gray-900">StudentRank</span>
         </a>
       </div>
 

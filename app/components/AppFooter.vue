@@ -4,12 +4,15 @@
       <div class="grid md:grid-cols-4 gap-8 mb-8">
         <div>
           <div class="flex items-center gap-2 mb-4">
-            <img
-              src="~/assets/images/logo.png"
-              alt="StudentRank"
-              class="w-52"
-            />
-            <!-- <span class="text-xl font-bold text-white">StudentRank</span> -->
+            <div
+              class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center"
+            >
+              <UIcon
+                name="i-heroicons-academic-cap"
+                class="w-6 h-6 text-white"
+              />
+            </div>
+            <span class="text-2xl font-bold text-white">StudentRank</span>
           </div>
           <p class="text-sm">
             O'zbekistondagi eng faol talabalar reytingi platformasi. Bilimingni
