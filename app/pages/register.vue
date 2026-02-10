@@ -1,17 +1,13 @@
 <template>
   <div
-    class="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-12"
+    class="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-10"
   >
     <div class="w-full max-w-md">
       <!-- Logo -->
-      <div class="text-center mb-8">
+      <div class="text-center">
         <a href="/" class="inline-flex items-center gap-2">
-          <img
-            src="~/assets/images/student-rank-logo.png"
-            alt="StudentRank"
-            class="w-10 h-10"
-          />
-          <span class="text-2xl font-bold text-gray-900">StudentRank</span>
+          <img src="~/assets/images/logo.png" alt="StudentRank" class="w-48" />
+          <!-- <span class="text-2xl font-bold text-gray-900">StudentRank</span> -->
         </a>
       </div>
 

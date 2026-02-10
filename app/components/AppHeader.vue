@@ -6,12 +6,8 @@
       <div class="flex items-center justify-between h-16">
         <!-- Logo -->
         <NuxtLink to="/" class="flex items-center gap-2">
-          <img
-            src="~/assets/images/student-rank-logo.png"
-            alt="StudentRank"
-            class="w-8 h-8"
-          />
-          <span class="text-xl font-bold text-gray-900">StudentRank</span>
+          <img src="~/assets/images/logo.png" alt="StudentRank" class="w-40" />
+          <!-- <span class="text-xl font-bold text-gray-900">StudentRank</span> -->
         </NuxtLink>
 
         <!-- Navigation Links (Desktop) -->

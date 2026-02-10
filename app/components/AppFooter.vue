@@ -5,11 +5,11 @@
         <div>
           <div class="flex items-center gap-2 mb-4">
             <img
-              src="~/assets/images/student-rank-logo.png"
+              src="~/assets/images/logo.png"
               alt="StudentRank"
-              class="w-8 h-8"
+              class="w-52"
             />
-            <span class="text-xl font-bold text-white">StudentRank</span>
+            <!-- <span class="text-xl font-bold text-white">StudentRank</span> -->
           </div>
           <p class="text-sm">
             O'zbekistondagi eng faol talabalar reytingi platformasi. Bilimingni
