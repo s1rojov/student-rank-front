@@ -45,13 +45,13 @@
             size="xl"
             class="w-full md:w-72"
           />
-          <USelect
+          <!-- <USelect
             v-model="selectedRegion"
             :options="regions"
             placeholder="Viloyat"
             size="xl"
             class="w-56"
-          />
+          /> -->
         </div>
 
         <!-- Ranking Table -->
