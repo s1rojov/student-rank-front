@@ -109,30 +109,30 @@
 </template>
 
 <script setup lang="ts">
-import { useAuthStore } from "~/stores/auth";
+  import { useAuthStore } from '~/stores/auth';
 
-useHead({
-  title: "Kirish - StudentRank",
-});
+  useHead({
+    title: 'Kirish - StudentRank',
+  });
 
-const authStore = useAuthStore();
-const loading = ref(false);
+  const authStore = useAuthStore();
+  const loading = ref(false);
 
-const form = reactive({
-  email: "",
-  password: "",
-  remember: false,
-});
+  const form = reactive({
+    email: '',
+    password: '',
+    remember: false,
+  });
 
-const handleLogin = async () => {
-  loading.value = true;
-  try {
-    await authStore.login(form.email, form.password);
-    navigateTo("/dashboard");
-  } catch (error) {
-    console.error("Login error:", error);
-  } finally {
-    loading.value = false;
-  }
-};
+  const handleLogin = async () => {
+    loading.value = true;
+    try {
+      await authStore.login(form.email, form.password);
+      navigateTo('/dashboard/analytics');
+    } catch (error) {
+      console.error('Login error:', error);
+    } finally {
+      loading.value = false;
+    }
+  };
 </script>

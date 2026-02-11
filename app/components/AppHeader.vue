@@ -70,10 +70,27 @@
 
         <!-- Auth Buttons -->
         <div class="hidden md:flex items-center gap-3">
-          <UButton variant="ghost" color="neutral" to="/login">
-            Kirish
-          </UButton>
-          <UButton color="primary" to="/register"> Ro'yxatdan o'tish </UButton>
+          <template v-if="authStore.isAuthenticated">
+            <UButton variant="ghost" color="neutral" to="/dashboard">
+              <UIcon name="i-heroicons-squares-2x2" class="w-4 h-4 mr-1" />
+              Dashboard
+            </UButton>
+            <UButton variant="ghost" color="neutral" @click="handleLogout">
+              <UIcon
+                name="i-heroicons-arrow-right-on-rectangle"
+                class="w-4 h-4 mr-1"
+              />
+              Chiqish
+            </UButton>
+          </template>
+          <template v-else>
+            <UButton variant="ghost" color="neutral" to="/login">
+              Kirish
+            </UButton>
+            <UButton color="primary" to="/register">
+              Ro'yxatdan o'tish
+            </UButton>
+          </template>
         </div>
 
         <!-- Mobile Menu Button -->
@@ -150,23 +167,44 @@
 
           <!-- Mobile Auth Buttons -->
           <div class="border-t border-gray-100 mt-2 pt-4 px-4 space-y-2">
-            <UButton
-              variant="outline"
-              color="neutral"
-              to="/login"
-              block
-              @click="mobileMenuOpen = false"
-            >
-              Kirish
-            </UButton>
-            <UButton
-              color="primary"
-              to="/register"
-              block
-              @click="mobileMenuOpen = false"
-            >
-              Ro'yxatdan o'tish
-            </UButton>
+            <template v-if="authStore.isAuthenticated">
+              <UButton
+                variant="outline"
+                color="neutral"
+                to="/dashboard"
+                block
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon name="i-heroicons-squares-2x2" class="w-4 h-4 mr-1" />
+                Dashboard
+              </UButton>
+              <UButton color="red" block @click="handleLogout">
+                <UIcon
+                  name="i-heroicons-arrow-right-on-rectangle"
+                  class="w-4 h-4 mr-1"
+                />
+                Chiqish
+              </UButton>
+            </template>
+            <template v-else>
+              <UButton
+                variant="outline"
+                color="neutral"
+                to="/login"
+                block
+                @click="mobileMenuOpen = false"
+              >
+                Kirish
+              </UButton>
+              <UButton
+                color="primary"
+                to="/register"
+                block
+                @click="mobileMenuOpen = false"
+              >
+                Ro'yxatdan o'tish
+              </UButton>
+            </template>
           </div>
         </div>
       </div>
@@ -175,8 +213,17 @@
 </template>
 
 <script setup lang="ts">
+  import { useAuthStore } from '~/stores/auth';
+
   const route = useRoute();
+  const router = useRouter();
+  const authStore = useAuthStore();
   const mobileMenuOpen = ref(false);
+
+  const handleLogout = () => {
+    authStore.logout();
+    mobileMenuOpen.value = false;
+  };
 
   // Upcoming tournaments for dropdown menu
   const tournamentMenuItems = [
