@@ -20,12 +20,7 @@
         <div class="max-w-3xl mx-auto">
           <UAccordion
             :items="faqItems"
-            :ui="{
-              wrapper: 'space-y-3',
-              default: {
-                class: 'text-lg font-medium',
-              },
-            }"
+
             class="[&_button]:text-base [&_button]:cursor-pointer [&_button]:font-medium [&_div[role=region]]:text-base"
           />
         </div>

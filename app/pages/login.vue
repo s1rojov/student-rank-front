@@ -128,7 +128,7 @@
     loading.value = true;
     try {
       await authStore.login(form.email, form.password);
-      navigateTo('/dashboard/analytics');
+      navigateTo('/dashboard');
     } catch (error) {
       console.error('Login error:', error);
     } finally {

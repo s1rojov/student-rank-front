@@ -178,7 +178,7 @@
                 <UIcon name="i-heroicons-squares-2x2" class="w-4 h-4 mr-1" />
                 Dashboard
               </UButton>
-              <UButton color="red" block @click="handleLogout">
+              <UButton color="error" block @click="handleLogout">
                 <UIcon
                   name="i-heroicons-arrow-right-on-rectangle"
                   class="w-4 h-4 mr-1"

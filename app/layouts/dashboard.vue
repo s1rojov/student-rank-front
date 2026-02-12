@@ -1,11 +1,11 @@
 <template>
   <div
-    class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100"
+    class="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-slate-100"
   >
     <!-- Sidebar -->
     <aside
       :class="[
-        'fixed left-0 top-0 z-40 h-screen w-72 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 shadow-2xl transition-transform duration-300',
+        'fixed left-0 top-0 z-40 h-screen w-72 bg-linear-to-b from-slate-900 via-slate-800 to-slate-900 shadow-2xl transition-transform duration-300',
         sidebarCollapsed
           ? '-translate-x-full md:translate-x-0 md:w-20'
           : 'translate-x-0',
@@ -16,7 +16,7 @@
         class="flex items-center gap-3 px-6 py-6 border-b border-slate-700/50 bg-slate-900/50"
       >
         <div
-          class="w-11 h-11 bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30 ring-2 ring-blue-400/20"
+          class="w-11 h-11 bg-linear-to-br from-blue-500 via-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30 ring-2 ring-blue-400/20"
         >
           <UIcon name="i-heroicons-academic-cap" class="w-6 h-6 text-white" />
         </div>
@@ -75,7 +75,7 @@
           ]"
           active-class="!bg-gradient-to-r !from-blue-600 !to-blue-700 !text-white shadow-lg shadow-blue-500/30"
         >
-          <UIcon name="i-heroicons-trophy" class="w-5 h-5 flex-shrink-0" />
+          <UIcon name="i-heroicons-trophy" class="w-5 h-5 shrink-0" />
           <span v-show="!sidebarCollapsed" class="font-medium">Turnirlar</span>
           <span
             v-show="!sidebarCollapsed"
@@ -123,7 +123,7 @@
           ]"
           active-class="!bg-gradient-to-r !from-blue-600 !to-blue-700 !text-white shadow-lg shadow-blue-500/30"
         >
-          <UIcon name="i-heroicons-users" class="w-5 h-5 flex-shrink-0" />
+          <UIcon name="i-heroicons-users" class="w-5 h-5 shrink-0" />
           <span v-show="!sidebarCollapsed" class="font-medium"
             >Foydalanuvchilar</span
           >
@@ -142,7 +142,7 @@
           ]"
           active-class="!bg-gradient-to-r !from-blue-600 !to-blue-700 !text-white shadow-lg shadow-blue-500/30"
         >
-          <UIcon name="i-heroicons-chart-bar" class="w-5 h-5 flex-shrink-0" />
+          <UIcon name="i-heroicons-chart-bar" class="w-5 h-5 shrink-0" />
           <span v-show="!sidebarCollapsed" class="font-medium">Analitika</span>
           <span
             v-show="sidebarCollapsed"
