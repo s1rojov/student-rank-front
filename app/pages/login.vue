@@ -125,9 +125,9 @@
     loading.value = true;
     try {
       // TODO: Implement login logic
-      console.log('Login:', form);
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      navigateTo('/');
+      // console.log('Login:', form);
+      // await new Promise((resolve) => setTimeout(resolve, 1000));
+      navigateTo('/dashboard');
     } catch (error) {
       console.error('Login error:', error);
     } finally {
