@@ -60,7 +60,7 @@ student-rank/
 │   │   ├── dashboard/   # Dashboard sahifalari
 │   │   ├── login.vue    # Login sahifasi ✨
 │   │   └── register.vue # Register sahifasi ✨
-│   └── stores/          # Pinia stores
+│   └── store/          # Pinia store
 │       └── auth.ts      # Auth store ✨ (Google OAuth)
 ├── public/              # Static fayllar
 ├── .env.example         # Environment variables misoli ✨

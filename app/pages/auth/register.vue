@@ -135,7 +135,7 @@
           <div class="text-center text-base text-gray-600">
             Allaqachon hisobingiz bormi?
             <ULink
-              to="/login"
+              to="/auth/login"
               class="text-blue-600 font-medium hover:underline"
             >
               Tizimga kiring
@@ -159,12 +159,15 @@
 </template>
 
 <script setup lang="ts">
-  import { useAuthStore } from '~/stores/auth';
+  import { useAuthStore } from '~/store/auth';
+  import { AuthService } from '~/services/auth.service';
 
   useHead({
     title: "Ro'yxatdan o'tish - StudentRank",
   });
 
+  const authStore = useAuthStore();
+  const toast = useToast();
   const loading = ref(false);
 
   const form = reactive({
@@ -177,32 +180,91 @@
   });
 
   const handleRegister = async () => {
+    // Validatsiya
+    if (
+      !form.fullName ||
+      !form.email ||
+      !form.phone ||
+      !form.password ||
+      !form.confirmPassword
+    ) {
+      toast.add({
+        title: 'Xatolik',
+        description: "Barcha maydonlarni to'ldiring",
+        color: 'red',
+        icon: 'i-heroicons-x-circle',
+      });
+      return;
+    }
+
     if (form.password !== form.confirmPassword) {
-      alert('Parollar mos kelmaydi!');
+      toast.add({
+        title: 'Xatolik',
+        description: 'Parollar mos kelmaydi!',
+        color: 'red',
+        icon: 'i-heroicons-x-circle',
+      });
+      return;
+    }
+
+    if (form.password.length < 8) {
+      toast.add({
+        title: 'Xatolik',
+        description: "Parol kamida 8 ta belgidan iborat bo'lishi kerak",
+        color: 'red',
+        icon: 'i-heroicons-x-circle',
+      });
+      return;
+    }
+
+    if (!form.agreeTerms) {
+      toast.add({
+        title: 'Xatolik',
+        description: 'Foydalanish shartlariga rozilik bering',
+        color: 'red',
+        icon: 'i-heroicons-x-circle',
+      });
       return;
     }
 
     loading.value = true;
     try {
-      // TODO: Implement register logic
-      console.log('Register:', form);
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      navigateTo('/login');
-    } catch (error) {
+      const response = await AuthService.register({
+        fullName: form.fullName,
+        email: form.email,
+        phone: form.phone,
+        password: form.password,
+        confirmPassword: form.confirmPassword,
+      });
+
+      // Auth store ga ma'lumotlarni saqlash
+      authStore.setAuth({
+        ...response.user,
+        accessToken: response.accessToken,
+        refreshToken: response.refreshToken,
+      });
+
+      toast.add({
+        title: 'Muvaffaqiyatli!',
+        description: "Ro'yxatdan muvaffaqiyatli o'tdingiz",
+        color: 'green',
+        icon: 'i-heroicons-check-circle',
+      });
+
+      // Dashboard ga yo'naltirish
+      await navigateTo('/dashboard');
+    } catch (error: any) {
       console.error('Register error:', error);
+      toast.add({
+        title: 'Xatolik',
+        description:
+          error.message ||
+          "Ro'yxatdan o'tishda xatolik yuz berdi. Qaytadan urinib ko'ring.",
+        color: 'red',
+        icon: 'i-heroicons-x-circle',
+      });
     } finally {
       loading.value = false;
-    }
-  };
-
-  const handleGoogleRegister = async () => {
-    try {
-      // Google OAuth orqali ro'yxatdan o'tish
-      const authStore = useAuthStore();
-      await authStore.loginWithGoogle();
-    } catch (error) {
-      console.error('Google register error:', error);
-      alert("Google orqali ro'yxatdan o'tishda xatolik yuz berdi");
     }
   };
 </script>

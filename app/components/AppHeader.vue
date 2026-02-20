@@ -84,10 +84,10 @@
             </UButton>
           </template>
           <template v-else>
-            <UButton variant="ghost" color="neutral" to="/login">
+            <UButton variant="ghost" color="neutral" to="/auth/login">
               Kirish
             </UButton>
-            <UButton color="primary" to="/register">
+            <UButton color="primary" to="/auth/register">
               Ro'yxatdan o'tish
             </UButton>
           </template>
@@ -190,7 +190,7 @@
               <UButton
                 variant="outline"
                 color="neutral"
-                to="/login"
+                to="/auth/login"
                 block
                 @click="mobileMenuOpen = false"
               >
@@ -198,7 +198,7 @@
               </UButton>
               <UButton
                 color="primary"
-                to="/register"
+                to="/auth/register"
                 block
                 @click="mobileMenuOpen = false"
               >
@@ -213,7 +213,7 @@
 </template>
 
 <script setup lang="ts">
-  import { useAuthStore } from '~/stores/auth';
+  import { useAuthStore } from '~/store/auth';
 
   const route = useRoute();
   const router = useRouter();

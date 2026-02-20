@@ -122,13 +122,15 @@
 </template>
 
 <script setup lang="ts">
-  import { useAuthStore } from '~/stores/auth';
+  import { useAuthStore } from '~/store/auth';
+  import { AuthService } from '~/services/auth.service';
 
   useHead({
     title: 'Kirish - StudentRank',
   });
 
-  // const authStore = useAuthStore();
+  const authStore = useAuthStore();
+  const toast = useToast();
   const loading = ref(false);
 
   const form = reactive({
@@ -138,12 +140,50 @@
   });
 
   const handleLogin = async () => {
+    // Validatsiya
+    if (!form.email || !form.password) {
+      toast.add({
+        title: 'Xatolik',
+        description: 'Email va parolni kiriting',
+        color: 'red',
+        icon: 'i-heroicons-x-circle',
+      });
+      return;
+    }
+
     loading.value = true;
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      navigateTo('/dashboard');
-    } catch (error) {
+      const response = await AuthService.login({
+        email: form.email,
+        password: form.password,
+      });
+
+      // Auth store ga ma'lumotlarni saqlash
+      authStore.setAuth({
+        ...response.user,
+        accessToken: response.accessToken,
+        refreshToken: response.refreshToken,
+      });
+
+      toast.add({
+        title: 'Muvaffaqiyatli!',
+        description: 'Tizimga muvaffaqiyatli kirdingiz',
+        color: 'green',
+        icon: 'i-heroicons-check-circle',
+      });
+
+      // Dashboard ga yo'naltirish
+      await navigateTo('/dashboard');
+    } catch (error: any) {
       console.error('Login error:', error);
+      toast.add({
+        title: 'Xatolik',
+        description:
+          error.message ||
+          "Email yoki parol noto'g'ri. Qaytadan urinib ko'ring.",
+        color: 'red',
+        icon: 'i-heroicons-x-circle',
+      });
     } finally {
       loading.value = false;
     }

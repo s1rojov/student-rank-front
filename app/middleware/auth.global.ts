@@ -1,32 +1,40 @@
-import { useAuthStore } from '~/stores/auth';
+export default defineNuxtRouteMiddleware((to, from) => {
+  // Faqat client-side ishlatish
+  if (process.server) return;
 
-export default defineNuxtRouteMiddleware(async (to, from) => {
-  const authStore = useAuthStore();
-  const accessToken = useCookie('access_token');
+  const token = useCookie('access_token');
 
-  // Public routes that don't require authentication
+  // Public sahifalar (autentifikatsiya talab qilmaydigan)
   const publicRoutes = [
     '/',
     '/about',
     '/contact',
     '/faq',
-    '/login',
-    '/register',
+    '/rating',
+    '/tournaments',
+    '/auth/login',
+    '/auth/register',
   ];
-  const isPublicRoute = publicRoutes.includes(to.path);
 
-  // If no token and trying to access protected route
-  // if (!accessToken.value && !isPublicRoute) {
-  //   return navigateTo('/login');
-  // }
+  // Agar sahifa public bo'lsa, o'tkazib yuborish
+  const isPublicRoute = publicRoutes.some(
+    (route) => to.path === route || to.path.startsWith(route),
+  );
 
-  // If has token, verify it with backend
-  // if (accessToken.value && !authStore.isAuthenticated) {
-  //   await authStore.checkAuth();
-  // }
+  if (isPublicRoute) {
+    // Agar token bor va login/register sahifasiga kirishga urinayotgan bo'lsa
+    if (
+      token.value &&
+      (to.path === '/auth/login' || to.path === '/auth/register')
+    ) {
+      return navigateTo('/dashboard');
+    }
+    return;
+  }
 
-  // If trying to access login page while authenticated
-  // if (accessToken.value && authStore.isAuthenticated && to.path === '/login') {
-  //   return navigateTo('/dashboard');
-  // }
+  // Himoyalangan sahifalar (dashboard va uning barcha child routes)
+  // Agar token yo'q bo'lsa, login sahifasiga yo'naltirish
+  if (!token.value) {
+    return navigateTo('/auth/login');
+  }
 });
